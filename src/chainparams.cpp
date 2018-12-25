@@ -53,7 +53,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x001"));
+    (34, uint256("d554184b3a1916d5bef6011053c9e039f60276be21a03a5a962c09dfb4dae42f"));
     /*
     (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
@@ -200,11 +200,11 @@ public:
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 2402015;
 
-        /*
+        
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"));
         assert(genesis.hashMerkleRoot == uint256("0x1b2ef6e2f28be914103a277377ae7729dcd125dfeb8bf97bd5964ba72b6dc39b"));
-        */
+        /*
         hashGenesisBlock = genesis.GetHash();
         if(genesis.GetHash() != uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"))
         {
@@ -230,6 +230,7 @@ public:
         printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
         }
+        */
 
         /*
         vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "pivx.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
@@ -272,7 +273,7 @@ public:
         fMineBlocksOnDemand = false;
         */
         fMineBlocksOnDemand = true;
-        fSkipProofOfWorkCheck = true;
+        fSkipProofOfWorkCheck = true; // must to set this flag=TRUE to run normally
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
 
