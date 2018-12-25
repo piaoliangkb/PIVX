@@ -53,7 +53,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x01"));
+    (0, uint256("0x001"));
     /*
     (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
@@ -206,7 +206,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x1b2ef6e2f28be914103a277377ae7729dcd125dfeb8bf97bd5964ba72b6dc39b"));
         */
         hashGenesisBlock = genesis.GetHash();
-        if(genesis.GetHash() != uint256("0x"))
+        if(genesis.GetHash() != uint256("0x0000041e482b9b9691d98eefb48473405c0b8ec31b76df3797c74a78680ef818"))
         {
         printf("MSearching for genesis block...\n");
         uint256 hashTarget;
@@ -272,7 +272,7 @@ public:
         fMineBlocksOnDemand = false;
         */
         fMineBlocksOnDemand = true;
-        fSkipProofOfWorkCheck = false;
+        fSkipProofOfWorkCheck = true;
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
 
@@ -329,10 +329,10 @@ public:
         pchMessageStart[1] = 0x43;
         pchMessageStart[2] = 0x26;
         pchMessageStart[3] = 0xab;
-        /*
+        
         vAlertPubKey = ParseHex("000010e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
-        */
-        vAlertPubKey = ParseHex("000010e93b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
+        
+        // vAlertPubKey = ParseHex("000010e93b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9");
         
         // nDefaultPort = 51888;
         nDefaultPort = 59999;
@@ -375,7 +375,7 @@ public:
         vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net"));
         vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110"));
         */
-        vSeeds.push_back(CDNSSeedData("192.168.152.5", "192.168.152.5"));
+        //vSeeds.push_back(CDNSSeedData("192.168.152.5", "192.168.152.5"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet pivx addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet pivx script addresses start with '8' or '9'
