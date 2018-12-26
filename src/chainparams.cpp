@@ -53,7 +53,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (34, uint256("d554184b3a1916d5bef6011053c9e039f60276be21a03a5a962c09dfb4dae42f"));
+    (10, uint256("00000de7ddc9cb80855421f6c6edbedda7330af399689cfeafc89c685fd9ffc8"));
     /*
     (259201, uint256("1c9121bf9329a6234bfd1ea2d91515f19cd96990725265253f4b164283ade5dd"))
     (424998, uint256("f31e381eedb0ed3ed65fcc98cc71f36012bee32e8efd017c4f9fb0620fd35f6b"))
@@ -269,10 +269,7 @@ public:
         fAllowMinDifficultyBlocks = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
-        /*
         fMineBlocksOnDemand = false;
-        */
-        fMineBlocksOnDemand = true;
         fSkipProofOfWorkCheck = true; // must to set this flag=TRUE to run normally
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
