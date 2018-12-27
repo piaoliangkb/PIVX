@@ -161,7 +161,10 @@ public:
         nMaxMoneyOut = 21000000 * COIN;
 
         /** Height or Time Based Activations **/
+        /*
         nLastPOWBlock = 259200;
+        */
+        nLastPOWBlock = 130; // set this to finish POWearly
         nModifierUpdateBlock = 615800;
         nZerocoinStartHeight = 863787;
         nZerocoinStartTime = 1508214600; // October 17, 2017 4:30:00 AM
