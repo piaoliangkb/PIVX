@@ -154,9 +154,9 @@ public:
         nRejectBlockOutdatedMajority = 10260; // 95%
         nToCheckBlockUpgradeMajority = 10800; // Approximate expected amount of blocks in 7 days (1440*7.5)
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // PIVX: 1 day
-        nTargetSpacing = 1 * 60;  // PIVX: 1 minute
-        nMaturity = 100;
+        nTargetTimespan = 40 * 10; // PIVX: 40 blocks to cal a new difficulity
+        nTargetSpacing = 1 * 10;  // PIVX: 10 seconds for 1 block
+        nMaturity = 2; // after this blocks to get the award for miner
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 21000000 * COIN;
 
@@ -164,7 +164,7 @@ public:
         /*
         nLastPOWBlock = 259200;
         */
-        nLastPOWBlock = 130; // set this to finish POWearly
+        nLastPOWBlock = 20; // set this to finish POWearly
         nModifierUpdateBlock = 615800;
         nZerocoinStartHeight = 863787;
         nZerocoinStartTime = 1508214600; // October 17, 2017 4:30:00 AM
@@ -268,7 +268,7 @@ public:
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = false; // setit to false in 2018.12.26 for POW test
+        fMiningRequiresPeers = true; // setit to false in 2018.12.26 for POW test
         fAllowMinDifficultyBlocks = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
