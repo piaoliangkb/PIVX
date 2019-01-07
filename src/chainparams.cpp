@@ -164,7 +164,7 @@ public:
         /*
         nLastPOWBlock = 259200;
         */
-        nLastPOWBlock = 20; // set this to finish POWearly
+        nLastPOWBlock = 100; // set this to finish POWearly
         nModifierUpdateBlock = 615800;
         nZerocoinStartHeight = 863787;
         nZerocoinStartTime = 1508214600; // October 17, 2017 4:30:00 AM
