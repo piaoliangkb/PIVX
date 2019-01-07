@@ -156,7 +156,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 40 * 10; // PIVX: 40 blocks to cal a new difficulity
         nTargetSpacing = 1 * 10;  // PIVX: 10 seconds for 1 block
-        nMaturity = 2; // after this blocks to get the award for miner
+        nMaturity = 0; // after this blocks to get the award for miner
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 21000000 * COIN;
 
