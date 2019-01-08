@@ -43,6 +43,9 @@ bool CMasternodeSync::IsBlockchainSynced()
 
     if (fBlockchainSynced) return true;
 
+    if (fImporting) LogPrintf("\n\nfImporting flag is true\n\n");
+    if (fReindex) LogPrintf("\n\nfReindex flag is true\n\n");
+
     if (fImporting || fReindex) return false;
 
     TRY_LOCK(cs_main, lockMain);
@@ -51,9 +54,16 @@ bool CMasternodeSync::IsBlockchainSynced()
     CBlockIndex* pindex = chainActive.Tip();
     if (pindex == NULL) return false;
 
-
+    // if the last block time plus 1 hour < gettime(), turns up that the chain is not new
+    // so in the real PIVX network, it should update
+    // we delete this to let the IsBlockSynced flag = true
+    /*
     if (pindex->nTime + 60 * 60 < GetTime())
+    {
+        LogPrintf("time errors");
         return false;
+    }
+    */
 
     fBlockchainSynced = true;
 
@@ -244,7 +254,7 @@ void CMasternodeSync::Process()
             Resync if we lose all masternodes from sleep/wake or failure to sync originally
         */
         if (mnodeman.CountEnabled() == 0) {
-            Reset();
+            // Reset();
         } else
             return;
     }
@@ -264,8 +274,22 @@ void CMasternodeSync::Process()
     if (Params().NetworkID() != CBaseChainParams::REGTEST &&
         !IsBlockchainSynced() && RequestedMasternodeAssets > MASTERNODE_SYNC_SPORKS) return;
 
+    
+    // log here to see whether it is ok to run here
+    //LogPrintf("\n\nPROCESS LOG CHECK::It is ok to run after RequestedMasternodeAssets > MASTERNODE_SYNC_SPORKS check\n\n");
+
     TRY_LOCK(cs_vNodes, lockRecv);
     if (!lockRecv) return;
+
+    // add one line here to check if the vNOdes is None
+    // if there is not any masternode in vNOdes, for the test of proof of stake
+    // we set assets = finished to set the mnsync = TRUE
+    if (vNodes.size() == 0) 
+    {
+        // LogPrintf("\n\nvNOdes is empty\n\n");
+        RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
+        return ;
+    }
 
     BOOST_FOREACH (CNode* pnode, vNodes) {
         if (Params().NetworkID() == CBaseChainParams::REGTEST) {
