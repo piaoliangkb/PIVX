@@ -254,7 +254,7 @@ void CMasternodeSync::Process()
             Resync if we lose all masternodes from sleep/wake or failure to sync originally
         */
         if (mnodeman.CountEnabled() == 0) {
-            // Reset();
+            Reset();
         } else
             return;
     }
@@ -290,11 +290,7 @@ void CMasternodeSync::Process()
         RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
         return ;
     }
-    else{
-        // LogPrintf("\n\nbNOdes is not empty\n\n");
-        RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
-        return ;
-    }
+
 
     BOOST_FOREACH (CNode* pnode, vNodes) {
         if (Params().NetworkID() == CBaseChainParams::REGTEST) {
@@ -320,11 +316,11 @@ void CMasternodeSync::Process()
             pnode->FulfilledRequest("getspork");
 
             pnode->PushMessage("getsporks"); //get current network sporks
-            if (RequestedMasternodeAttempt >= 2) GetNextAsset();
+            if (RequestedMasternodeAttempt >= 1) GetNextAsset();
             RequestedMasternodeAttempt++;
 
             // log this value to see the change
-            LogPrintf("now requestattempt = %d", RequestedMasternodeAttempt);
+            //LogPrintf("now requestattempt = %d", RequestedMasternodeAttempt);
 
             return;
         }
