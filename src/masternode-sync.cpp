@@ -291,7 +291,9 @@ void CMasternodeSync::Process()
         return ;
     }
     else{
-        LogPrintf("\n\nbNOdes is not empty\n\n");
+        // LogPrintf("\n\nbNOdes is not empty\n\n");
+        RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
+        return ;
     }
 
     BOOST_FOREACH (CNode* pnode, vNodes) {
