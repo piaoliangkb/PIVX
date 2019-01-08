@@ -290,6 +290,9 @@ void CMasternodeSync::Process()
         RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
         return ;
     }
+    else{
+        LogPrintf("\n\nbNOdes is not empty\n\n");
+    }
 
     BOOST_FOREACH (CNode* pnode, vNodes) {
         if (Params().NetworkID() == CBaseChainParams::REGTEST) {
@@ -317,6 +320,9 @@ void CMasternodeSync::Process()
             pnode->PushMessage("getsporks"); //get current network sporks
             if (RequestedMasternodeAttempt >= 2) GetNextAsset();
             RequestedMasternodeAttempt++;
+
+            // log this value to see the change
+            LogPrintf("now requestattempt = %d", RequestedMasternodeAttempt);
 
             return;
         }
