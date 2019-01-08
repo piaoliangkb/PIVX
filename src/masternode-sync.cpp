@@ -247,6 +247,9 @@ void CMasternodeSync::Process()
 {
     static int tick = 0;
 
+    RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
+    return ;
+
     if (tick++ % MASTERNODE_SYNC_TIMEOUT != 0) return;
 
     if (IsSynced()) {
@@ -284,12 +287,12 @@ void CMasternodeSync::Process()
     // add one line here to check if the vNOdes is None
     // if there is not any masternode in vNOdes, for the test of proof of stake
     // we set assets = finished to set the mnsync = TRUE
-    if (vNodes.size() == 0) 
-    {
-        // LogPrintf("\n\nvNOdes is empty\n\n");
-        RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
-        return ;
-    }
+    // if (vNodes.size() == 0) 
+    //{
+    //    // LogPrintf("\n\nvNOdes is empty\n\n");
+    //    RequestedMasternodeAssets = MASTERNODE_SYNC_FINISHED;
+    //    return ;
+    //}
 
 
     BOOST_FOREACH (CNode* pnode, vNodes) {
