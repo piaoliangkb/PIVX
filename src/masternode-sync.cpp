@@ -51,9 +51,13 @@ bool CMasternodeSync::IsBlockchainSynced()
     CBlockIndex* pindex = chainActive.Tip();
     if (pindex == NULL) return false;
 
-
+    // if the last block time plus 1 hour < gettime(), turns up that the chain is not new
+    // so in the real PIVX network, it should update
+    // we delete this to let the IsBlockSynced flag = true
+    /*
     if (pindex->nTime + 60 * 60 < GetTime())
         return false;
+    */
 
     fBlockchainSynced = true;
 
